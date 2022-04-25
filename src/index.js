@@ -11,12 +11,11 @@ if ("serviceWorker" in navigator) {
 
 document.querySelector("#send-notification").addEventListener("click", () => {
     Notification.requestPermission().then((result) => {
-        console.log(result)
-        document.querySelector(".result").innerHTML = result;
         if (result === 'granted') {
-            navigator.serviceWorker.ready.then((registration) => {
-                showNotification(registration);
-            });
+            navigator.serviceWorker.ready
+                .then((registration) => {
+                    showNotification(registration);
+                });
         }
     });
 })
