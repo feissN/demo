@@ -5,7 +5,8 @@ self.addEventListener("install", e => {
                 return cache.addAll([
                     "./",
                     "./src/style.css",
-                    "./assets/img/logo192.png"
+                    "./assets/img/logo192.png",
+                    "./assets/img/notification.png"
                 ])
             })
     );

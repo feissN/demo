@@ -12,12 +12,15 @@ if ("serviceWorker" in navigator) {
 document.querySelector("#send-notification").addEventListener("click", () => {
     Notification.requestPermission().then((result) => {
         console.log(result)
+        document.querySelector(".result").innerHTML = result;
         if (result === 'granted') {
-            randomNotification();
+            navigator.serviceWorker.ready.then((registration) => {
+                showNotification(registration);
+            });
         }
     });
 })
-function randomNotification() {
+function showNotification(registration) {
     const notifTitle = "Notification Title";
     const notifBody = "Notification Body";
     const notifImg = "assets/img/notification.png";
@@ -25,5 +28,5 @@ function randomNotification() {
         body: notifBody,
         icon: notifImg,
     };
-    new Notification(notifTitle, options);
+    registration.showNotification(notifTitle, options);
 }
